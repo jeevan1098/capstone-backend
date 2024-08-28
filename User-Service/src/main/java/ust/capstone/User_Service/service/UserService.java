@@ -3,6 +3,7 @@ package ust.capstone.User_Service.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ust.capstone.User_Service.exception.UserNotFoundException;
 import ust.capstone.User_Service.model.User;
 import ust.capstone.User_Service.repository.UserRepository;
 
@@ -24,7 +25,11 @@ public class UserService {
     }
 
     public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UserNotFoundException("User with email " + email + " not found");
+        }
+        return user;
     }
 
     public User loginUser(String email, String password) {
@@ -32,7 +37,7 @@ public class UserService {
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             return user;
         }
-        return null;
+        throw new UserNotFoundException("Invalid email or password");
     }
 
     public User updateUser(String email, User userDetails) {
@@ -44,14 +49,16 @@ public class UserService {
             // Update other fields as needed
             return userRepository.save(user);
         }
-        return null;
+        throw new UserNotFoundException("User with email " + email + " not found");
     }
 
-    public void deleteUser(String email) {
+    public boolean deleteUser(String email) {
         User user = userRepository.findByEmail(email);
         if (user != null) {
             userRepository.delete(user);
+            return true;
         }
+        throw new UserNotFoundException("User with email " + email + " not found");
     }
 
     public List<User> getAllUsers() {

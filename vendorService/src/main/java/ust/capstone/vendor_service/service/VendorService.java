@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ust.capstone.vendor_service.exception.VendorNotFoundException;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.repository.VendorRepository;
 
@@ -39,11 +40,19 @@ public class VendorService {
                     }
                     return vendorRepository.save(existingVendor);
                 })
-                .orElse(null);
+                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with id: " + id));
     }
 
     public Optional<Vendor> getVendorById(String id) {
         return vendorRepository.findById(id);
+    }
+
+    public Vendor getVendorByContactMail(String contactMail) {
+        Vendor vendor = vendorRepository.findByContactMail(contactMail);
+        if (vendor == null) {
+            throw new VendorNotFoundException("Vendor not found with contact mail: " + contactMail);
+        }
+        return vendor;
     }
 
     public List<Vendor> getAllVendors() {
@@ -59,6 +68,9 @@ public class VendorService {
     }
 
     public void deleteVendor(String id) {
+        if (!vendorRepository.existsById(id)) {
+            throw new VendorNotFoundException("Vendor not found with id: " + id);
+        }
         vendorRepository.deleteById(id);
     }
 }

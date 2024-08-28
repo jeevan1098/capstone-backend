@@ -1,11 +1,14 @@
 package ust.capstone.vendor_service.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.service.VendorService;
+import ust.capstone.vendor_service.exception.VendorNotFoundException;
 
 @RestController
 @RequestMapping("/api/vendors")
@@ -21,19 +24,34 @@ public class VendorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Vendor> updateVendor(@PathVariable String id, @RequestBody Vendor vendor) {
-        Vendor updatedVendor = vendorService.updateVendor(id, vendor);
-        if (updatedVendor != null) {
+    public ResponseEntity<?> updateVendor(@PathVariable String id, @RequestBody Vendor vendor) {
+        try {
+            Vendor updatedVendor = vendorService.updateVendor(id, vendor);
             return ResponseEntity.ok(updatedVendor);
+        } catch (VendorNotFoundException ex) {
+            return ResponseEntity.status(404).body("Vendor not found with id: " + id);
         }
-        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Vendor> getVendorById(@PathVariable String id) {
-        return vendorService.getVendorById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<?> getVendorById(@PathVariable String id) {
+        Optional<Vendor> vendor = vendorService.getVendorById(id);
+        if (vendor.isPresent()) {
+            return ResponseEntity.ok(vendor.get());
+        } else {
+            return ResponseEntity.status(404).body("Vendor not found with id: " + id);
+        }
+    }
+
+
+    @GetMapping("/contact/{contactMail}")
+    public ResponseEntity<?> getVendorByContactMail(@PathVariable String contactMail) {
+        try {
+            Vendor vendor = vendorService.getVendorByContactMail(contactMail);
+            return ResponseEntity.ok(vendor);
+        } catch (VendorNotFoundException ex) {
+            return ResponseEntity.status(404).body("Vendor not found with contact mail: " + contactMail);
+        }
     }
 
     @GetMapping
@@ -42,18 +60,22 @@ public class VendorController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Vendor> login(@RequestBody Vendor vendor) {
+    public ResponseEntity<?> login(@RequestBody Vendor vendor) {
         Vendor loggedInVendor = vendorService.login(vendor.getContactMail(), vendor.getPassword());
         if (loggedInVendor != null) {
             return ResponseEntity.ok(loggedInVendor);
         } else {
-            return ResponseEntity.status(401).body(null); // Unauthorized
+            return ResponseEntity.status(401).body("Unauthorized: Incorrect contact mail or password");
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVendor(@PathVariable String id) {
-        vendorService.deleteVendor(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteVendor(@PathVariable String id) {
+        try {
+            vendorService.deleteVendor(id);
+            return ResponseEntity.noContent().build();
+        } catch (VendorNotFoundException ex) {
+            return ResponseEntity.status(404).body("Vendor not found with id: " + id);
+        }
     }
 }

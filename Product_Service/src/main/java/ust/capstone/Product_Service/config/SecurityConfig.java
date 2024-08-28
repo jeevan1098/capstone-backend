@@ -1,7 +1,8 @@
-package ust.capstone.User_Service.config;
+package ust.capstone.Product_Service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,17 +16,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .csrf().disable() // Disable CSRF protection for simplicity in non-browser clients
                 .authorizeRequests()
-                .antMatchers("/api/users/**", "/api/users/login").permitAll() // Allowing public access to register and login
-                .anyRequest().authenticated()
+                .anyRequest().permitAll() // Allow all requests without authentication
                 .and()
-                .httpBasic(); // Basic Authentication
+                .httpBasic(); // Keep Basic Authentication setup, though it won't be necessary unless specified
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); // Password encoder, if needed later
     }
 }

@@ -1,8 +1,10 @@
 package ust.capstone.User_Service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ust.capstone.User_Service.exception.UserNotFoundException;
 import ust.capstone.User_Service.model.User;
 import ust.capstone.User_Service.service.UserService;
 
@@ -22,36 +24,43 @@ public class UserController {
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-        User user = userService.findUserByEmail(email);
-        if (user != null) {
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+        try {
+            User user = userService.findUserByEmail(email);
             return ResponseEntity.ok(user);
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
-        return ResponseEntity.notFound().build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody User user) {
-        User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
-        if (loggedInUser != null) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
+        try {
+            User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
             return ResponseEntity.ok(loggedInUser);
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
         }
-        return ResponseEntity.status(401).build();
     }
 
     @PutMapping("/{email}")
-    public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(email, userDetails);
-        if (updatedUser != null) {
+    public ResponseEntity<?> updateUser(@PathVariable String email, @RequestBody User userDetails) {
+        try {
+            User updatedUser = userService.updateUser(email, userDetails);
             return ResponseEntity.ok(updatedUser);
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }
-        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{email}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String email) {
-        userService.deleteUser(email);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> deleteUser(@PathVariable String email) {
+        try {
+            userService.deleteUser(email);
+            return ResponseEntity.noContent().build();
+        } catch (UserNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
     }
 
     @GetMapping

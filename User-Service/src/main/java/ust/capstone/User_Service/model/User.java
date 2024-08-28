@@ -1,11 +1,14 @@
 package ust.capstone.User_Service.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.Id;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user")
@@ -13,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Entity
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String username;
     private String password;
