@@ -47,24 +47,19 @@ public class VendorService {
         return vendorRepository.findById(id);
     }
 
-    public Vendor getVendorByContactMail(String contactMail) {
-        Vendor vendor = vendorRepository.findByContactMail(contactMail);
-        if (vendor == null) {
-            throw new VendorNotFoundException("Vendor not found with contact mail: " + contactMail);
+    public Vendor login(String contactMail, String password) {
+        Optional<Vendor> optionalVendor = vendorRepository.findByContactMail(contactMail);
+        if (optionalVendor.isPresent()) {
+            Vendor vendor = optionalVendor.get();
+            if (passwordEncoder.matches(password, vendor.getPassword())) {
+                return vendor;
+            }
         }
-        return vendor;
+        return null; // Or throw an exception if you prefer
     }
 
     public List<Vendor> getAllVendors() {
         return vendorRepository.findAll();
-    }
-
-    public Vendor login(String contactMail, String password) {
-        Vendor vendor = vendorRepository.findByContactMail(contactMail);
-        if (vendor != null && passwordEncoder.matches(password, vendor.getPassword())) {
-            return vendor;
-        }
-        return null;
     }
 
     public void deleteVendor(String id) {
@@ -73,4 +68,17 @@ public class VendorService {
         }
         vendorRepository.deleteById(id);
     }
+
+    public void deleteVendorByContactMail(String contactMail) {
+        Vendor vendor = vendorRepository.findByContactMail(contactMail)
+                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
+        vendorRepository.delete(vendor);
+    }
+
+    public Vendor getVendorByContactMail(String contactMail) {
+        return vendorRepository.findByContactMail(contactMail)
+                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
+    }
+
+
 }

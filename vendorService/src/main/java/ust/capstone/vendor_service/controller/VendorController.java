@@ -43,7 +43,6 @@ public class VendorController {
         }
     }
 
-
     @GetMapping("/contact/{contactMail}")
     public ResponseEntity<?> getVendorByContactMail(@PathVariable String contactMail) {
         try {
@@ -76,6 +75,16 @@ public class VendorController {
             return ResponseEntity.noContent().build();
         } catch (VendorNotFoundException ex) {
             return ResponseEntity.status(404).body("Vendor not found with id: " + id);
+        }
+    }
+
+    @DeleteMapping("/contact/{contactMail}")
+    public ResponseEntity<String> deleteVendorByContactMail(@PathVariable String contactMail) {
+        try {
+            vendorService.deleteVendorByContactMail(contactMail);
+            return ResponseEntity.noContent().build();
+        } catch (VendorNotFoundException ex) {
+            return ResponseEntity.status(404).body("Vendor not found with contact mail: " + contactMail);
         }
     }
 }
