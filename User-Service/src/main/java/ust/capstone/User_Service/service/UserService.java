@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import ust.capstone.User_Service.model.User;
 import ust.capstone.User_Service.repository.UserRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -24,7 +27,6 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-//    loginUser
     public User loginUser(String email, String password) {
         User user = userRepository.findByEmail(email);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
@@ -33,6 +35,30 @@ public class UserService {
         return null;
     }
 
+    public User updateUser(String email, User userDetails) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            user.setUsername(userDetails.getUsername());
+            user.setPassword(passwordEncoder.encode(userDetails.getPassword())); // Re-encrypt the new password
+            user.setAddress(userDetails.getAddress());
+            // Update other fields as needed
+            return userRepository.save(user);
+        }
+        return null;
+    }
 
-    // Additional methods can be defined here as needed
+    public void deleteUser(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            userRepository.delete(user);
+        }
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(String id) {
+        return userRepository.findById(id);
+    }
 }

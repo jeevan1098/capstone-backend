@@ -7,4 +7,6 @@ import ust.capstone.vendor_service.model.Vendor;
 @Repository
 public interface VendorRepository extends MongoRepository<Vendor, String> {
     Vendor findByContactMailAndPassword(String contactMail, String password);
+
+    Vendor findByContactMail(String contactMail);
 }

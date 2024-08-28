@@ -16,12 +16,17 @@ public class VendorController {
 
     @PostMapping("/register")
     public ResponseEntity<Vendor> registerVendor(@RequestBody Vendor vendor) {
-        return ResponseEntity.ok(vendorService.registerVendor(vendor));
+        Vendor registeredVendor = vendorService.registerVendor(vendor);
+        return ResponseEntity.ok(registeredVendor);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Vendor> updateVendor(@PathVariable String id, @RequestBody Vendor vendor) {
-        return ResponseEntity.ok(vendorService.updateVendor(id, vendor));
+        Vendor updatedVendor = vendorService.updateVendor(id, vendor);
+        if (updatedVendor != null) {
+            return ResponseEntity.ok(updatedVendor);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
@@ -44,5 +49,11 @@ public class VendorController {
         } else {
             return ResponseEntity.status(401).body(null); // Unauthorized
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVendor(@PathVariable String id) {
+        vendorService.deleteVendor(id);
+        return ResponseEntity.noContent().build();
     }
 }
