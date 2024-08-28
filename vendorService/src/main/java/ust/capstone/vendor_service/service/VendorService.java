@@ -26,6 +26,8 @@ public class VendorService {
                     existingVendor.setContactPhone(vendor.getContactPhone());
                     existingVendor.setWebsite(vendor.getWebsite());
                     existingVendor.setCity(vendor.getCity());
+                    existingVendor.setGstno(vendor.getGstno());
+                    existingVendor.setPassword(vendor.getPassword());
                     return vendorRepository.save(existingVendor);
                 })
                 .orElse(null);
@@ -37,5 +39,9 @@ public class VendorService {
 
     public List<Vendor> getAllVendors() {
         return vendorRepository.findAll();
+    }
+
+    public Vendor login(String contactMail, String password) {
+        return vendorRepository.findByContactMailAndPassword(contactMail, password);
     }
 }

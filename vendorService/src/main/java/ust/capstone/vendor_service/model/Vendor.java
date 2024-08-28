@@ -2,10 +2,6 @@ package ust.capstone.vendor_service.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 @Document(collection = "vendors")
 public class Vendor {
@@ -17,11 +13,13 @@ public class Vendor {
     private String contactPhone;
     private String website;
     private String city;
+    private String password;
+    private String gstno;
 
     public Vendor() {
     }
 
-    public Vendor(String id, String name, String description, String contactMail, String contactPhone, String website, String city) {
+    public Vendor(String id, String name, String description, String contactMail, String contactPhone, String website, String city, String password, String gstno) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,6 +27,8 @@ public class Vendor {
         this.contactPhone = contactPhone;
         this.website = website;
         this.city = city;
+        this.password = password;
+        this.gstno = gstno;
     }
 
     public String getId() {
@@ -85,5 +85,21 @@ public class Vendor {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getGstno() {
+        return gstno;
+    }
+
+    public void setGstno(String gstno) {
+        this.gstno = gstno;
     }
 }

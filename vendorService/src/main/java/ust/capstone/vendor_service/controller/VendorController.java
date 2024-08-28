@@ -35,4 +35,14 @@ public class VendorController {
     public ResponseEntity<List<Vendor>> getAllVendors() {
         return ResponseEntity.ok(vendorService.getAllVendors());
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<Vendor> login(@RequestBody Vendor vendor) {
+        Vendor loggedInVendor = vendorService.login(vendor.getContactMail(), vendor.getPassword());
+        if (loggedInVendor != null) {
+            return ResponseEntity.ok(loggedInVendor);
+        } else {
+            return ResponseEntity.status(401).body(null); // Unauthorized
+        }
+    }
 }

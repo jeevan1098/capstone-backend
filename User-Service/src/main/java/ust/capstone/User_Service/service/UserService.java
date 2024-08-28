@@ -24,5 +24,15 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+//    loginUser
+    public User loginUser(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        }
+        return null;
+    }
+
+
     // Additional methods can be defined here as needed
 }

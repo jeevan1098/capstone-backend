@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/vendors/register").permitAll() // Correct usage for matching paths
+                .antMatchers("/api/vendors/**").permitAll() // Correct usage for matching paths
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic(); // Basic Authentication
