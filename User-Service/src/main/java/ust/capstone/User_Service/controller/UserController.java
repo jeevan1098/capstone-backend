@@ -24,5 +24,5 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    // Additional endpoints can be added here
+
 }
