@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.service.VendorService;
 import ust.capstone.vendor_service.exception.VendorNotFoundException;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/vendors")
 public class VendorController {
