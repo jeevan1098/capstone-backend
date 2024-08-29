@@ -1,13 +1,16 @@
 package ust.capstone.vendor_service.service;
 
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ust.capstone.vendor_service.feigen.ProductServiceClient;
 import ust.capstone.vendor_service.exception.VendorNotFoundException;
+import ust.capstone.vendor_service.feigen.ProductServiceClient;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.repository.VendorRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VendorService {
@@ -18,8 +21,10 @@ public class VendorService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ProductServiceClient productServiceClient;
+
     public Vendor registerVendor(Vendor vendor) {
-        // Encrypt the password
         vendor.setPassword(passwordEncoder.encode(vendor.getPassword()));
         return vendorRepository.save(vendor);
     }
@@ -34,7 +39,6 @@ public class VendorService {
                     existingVendor.setWebsite(vendor.getWebsite());
                     existingVendor.setCity(vendor.getCity());
                     existingVendor.setGstno(vendor.getGstno());
-                    // Only update the password if it's not null or empty
                     if (vendor.getPassword() != null && !vendor.getPassword().isEmpty()) {
                         existingVendor.setPassword(passwordEncoder.encode(vendor.getPassword()));
                     }
@@ -55,7 +59,7 @@ public class VendorService {
                 return vendor;
             }
         }
-        return null; // Or throw an exception if you prefer
+        return null;
     }
 
     public List<Vendor> getAllVendors() {
@@ -80,5 +84,7 @@ public class VendorService {
                 .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
     }
 
-
+    public List<?> getProductsByVendorId(String vendorId) {
+        return productServiceClient.getProductsByVendorId(vendorId);
+    }
 }

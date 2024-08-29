@@ -3,6 +3,9 @@ package ust.capstone.Product_Service.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "product")
 public class Product {
     @Id
@@ -10,21 +13,31 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private String categoryId; // Reference to Category
+    private String categoryId;  // Reference to Category
+    private String vendorId;    // Reference to Vendor
     private int stockQuantity;
     private String imageUrl;
+
+    // Optional: list of review IDs associated with this product
+    private List<String> reviewIds = new ArrayList<>(); // Initialize here
+
+    // Constructors, getters, and setters
+
+
 
     public Product() {
     }
 
-    public Product(String id, String name, String description, double price, String categoryId, int stockQuantity, String imageUrl) {
+    public Product(String id, String name, String description, double price, String categoryId, String vendorId, int stockQuantity, String imageUrl, List<String> reviewIds) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.categoryId = categoryId;
+        this.vendorId = vendorId;
         this.stockQuantity = stockQuantity;
         this.imageUrl = imageUrl;
+        this.reviewIds = reviewIds;
     }
 
     public String getId() {
@@ -67,6 +80,14 @@ public class Product {
         this.categoryId = categoryId;
     }
 
+    public String getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(String vendorId) {
+        this.vendorId = vendorId;
+    }
+
     public int getStockQuantity() {
         return stockQuantity;
     }
@@ -81,5 +102,13 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<String> getReviewIds() {
+        return reviewIds;
+    }
+
+    public void setReviewIds(List<String> reviewIds) {
+        this.reviewIds = reviewIds;
     }
 }

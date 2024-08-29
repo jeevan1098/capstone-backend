@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ust.capstone.Product_Service.model.Category;
+import ust.capstone.Product_Service.model.Product;
 import ust.capstone.Product_Service.service.CategoryService;
+import ust.capstone.Product_Service.service.ProductService;
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductService productService;
 
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
@@ -39,5 +44,10 @@ public class CategoryController {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok().build();
     }
-}
 
+    @GetMapping("/{id}/products")
+    public ResponseEntity<List<Product>> getProductsByCategoryId(@PathVariable String id) {
+        return ResponseEntity.ok(productService.getProductsByCategoryId(id));
+    }
+
+}

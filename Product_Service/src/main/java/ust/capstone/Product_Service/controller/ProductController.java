@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ust.capstone.Product_Service.model.Product;
+import ust.capstone.Product_Service.model.Review;
 import ust.capstone.Product_Service.service.ProductService;
+import ust.capstone.Product_Service.service.ReviewService;
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
@@ -39,5 +44,15 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.ok().build();
     }
-}
 
+    @GetMapping("/vendor/{vendorId}")
+    public ResponseEntity<List<Product>> getProductsByVendorId(@PathVariable String vendorId) {
+        return ResponseEntity.ok(productService.getProductsByVendorId(vendorId));
+    }
+
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<List<Review>> getReviewsByProductId(@PathVariable String id) {
+        return ResponseEntity.ok(reviewService.getReviewsByProductId(id));
+    }
+
+}
