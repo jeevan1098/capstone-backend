@@ -67,10 +67,7 @@ public class VendorController {
             return ResponseEntity.status(401).body("Unauthorized: Incorrect contact mail or password");
         }
     }
-    @GetMapping("/test")
-    public ResponseEntity<String> testEndpoint() {
-        return ResponseEntity.ok("Service is working!");
-    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteVendor(@PathVariable String id) {
         try {

@@ -10,6 +10,7 @@ import ust.capstone.Product_Service.service.ProductService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {

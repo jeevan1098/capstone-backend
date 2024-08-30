@@ -9,6 +9,7 @@ import ust.capstone.Order_Service.service.OrderItemService;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/order-items")
 public class OrderItemController {

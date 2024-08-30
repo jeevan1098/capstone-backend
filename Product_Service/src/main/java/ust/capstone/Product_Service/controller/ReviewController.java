@@ -7,7 +7,7 @@ import ust.capstone.Product_Service.model.Review;
 import ust.capstone.Product_Service.service.ReviewService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
