@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: User-Service
+  data:
+    mongodb:
+      uri: mongodb+srv://jeevanbabugotru29:ZauiUZCKnMrNVnog@cluster0.iflqq.mongodb.net/localbusiness?retryWrites=true&w=majority&appName=Cluster0
+
+
+server:
+  port: 5001
+
+debug: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5005/eureka/
+    register-with-eureka: true
+    fetch-registry: true

@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba7a6d0b-65cc-41b6-ae17-962dfbcfef03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../vendorService/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.factorypath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.settings/org.eclipse.jdt.apt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/.settings/org.springframework.ide.eclipse.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../vendorService/target/test-classes/ust/capstone/vendor_service/VendorServiceApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/controller/VendorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/controller/VendorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/VendorServiceApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/VendorServiceApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/controller/VendorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/controller/VendorController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/exception/VendorNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/exception/VendorNotFoundException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/model/Vendor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/model/Vendor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/repository/VendorRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/repository/VendorRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/service/VendorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/service/VendorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/test-classes/com/project/vendorService/VendorServiceApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +27,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+        <option name="mavenHome" value="Use Maven wrapper" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -67,16 +42,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Product_Service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/284744/Documents/Capstone/Microservices/User-Service&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ProductServiceApplication.executor": "Run",
+    "Maven.Product_Service [clean].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/JEEVAN/OneDrive/Pictures/capstone/capstone-backend/Product_Service"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ProductServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ust.capstone.Product_Service.ProductServiceApplication" />
@@ -96,6 +72,13 @@
         <item itemvalue="Application.ProductServiceApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
