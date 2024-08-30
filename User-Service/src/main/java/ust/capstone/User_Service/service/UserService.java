@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ust.capstone.User_Service.exception.UserNotFoundException;
+import ust.capstone.User_Service.feign.OrderClient;
 import ust.capstone.User_Service.model.User;
 import ust.capstone.User_Service.repository.UserRepository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -18,6 +20,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private OrderClient orderClient;
+
+    public List<Map<String, Object>> getOrdersByUserId(String userId) {
+        return orderClient.getOrdersByUserId(userId);
+    }
     public User registerUser(User user) {
         // Encrypt the password
         user.setPassword(passwordEncoder.encode(user.getPassword()));

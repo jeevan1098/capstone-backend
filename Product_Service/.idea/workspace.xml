@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba7a6d0b-65cc-41b6-ae17-962dfbcfef03" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/feign/OrderClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../User-Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/UserServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/JEEVAN/OneDrive/Pictures/capstone/capstone-backend/Product_Service"
+    "last_opened_file_path": "C:/Users/JEEVAN/OneDrive/Pictures/capstone/capstone-backend/User-Service"
   }
 }]]></component>
   <component name="RunManager">

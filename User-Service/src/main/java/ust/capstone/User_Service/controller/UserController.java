@@ -9,6 +9,7 @@ import ust.capstone.User_Service.model.User;
 import ust.capstone.User_Service.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -17,6 +18,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{userId}/orders")
+    public ResponseEntity<List<Map<String, Object>>> getOrdersByUserId(@PathVariable String userId) {
+        List<Map<String, Object>> orders = userService.getOrdersByUserId(userId);
+        return ResponseEntity.ok(orders);
+    }
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User registeredUser = userService.registerUser(user);
