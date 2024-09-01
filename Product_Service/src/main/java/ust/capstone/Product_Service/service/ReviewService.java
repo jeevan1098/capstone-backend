@@ -54,6 +54,9 @@ public class ReviewService {
         Review review = getReviewById(id);
         reviewRepository.delete(review);
     }
+    public List<Review> getReviewsByUserId(String userId) {
+        return reviewRepository.findByUserId(userId);
+    }
 
     public List<Review> getReviewsByProductId(String productId) {
         return reviewRepository.findByProductId(productId);
