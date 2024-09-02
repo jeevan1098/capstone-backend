@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba7a6d0b-65cc-41b6-ae17-962dfbcfef03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/feign/ProductClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/feign/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/OrderServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/OrderServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/feign/VendorClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

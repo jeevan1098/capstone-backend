@@ -2,6 +2,7 @@ package ust.capstone.Product_Service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ust.capstone.Product_Service.feign.VendorClient;
 import ust.capstone.Product_Service.model.Category;
 import ust.capstone.Product_Service.model.Product;
 import ust.capstone.Product_Service.repository.CategoryRepository;
@@ -9,6 +10,7 @@ import ust.capstone.Product_Service.repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
@@ -19,24 +21,46 @@ public class ProductService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private VendorClient vendorClient;
+
     // Create a new product
     public Product createProduct(Product product) {
+        // Fetch vendor details
+        Map<String, Object> vendor = vendorClient.getVendorById(product.getVendorId());
+        String vendorName = (String) vendor.get("name");
+
+        // Set vendor name in product
+        product.setVendorName(vendorName);
+
+        // Save product and update category
         Product savedProduct = productRepository.save(product);
         updateCategoryWithProduct(savedProduct.getCategoryId(), savedProduct.getId());
         return savedProduct;
     }
+
+    // Update product stock quantity
     public Product updateProductStock(String id, int quantity) {
-        Product product = getProductById(id);  // Fetch the product by ID
+        Product product = getProductById(id);
         if (product.getStockQuantity() >= quantity) {
             product.setStockQuantity(product.getStockQuantity() - quantity);
-            return productRepository.save(product);  // Save the updated product
+            return productRepository.save(product);
         } else {
             throw new RuntimeException("Insufficient stock");
         }
     }
+
     // Update an existing product
     public Product updateProduct(String id, Product productDetails) {
         Product product = getProductById(id);
+
+        // Fetch vendor details if vendorId is updated
+        if (!product.getVendorId().equals(productDetails.getVendorId())) {
+            Map<String, Object> vendor = vendorClient.getVendorById(productDetails.getVendorId());
+            String vendorName = (String) vendor.get("name");
+            product.setVendorName(vendorName);
+        }
+
         product.setName(productDetails.getName());
         product.setDescription(productDetails.getDescription());
         product.setPrice(productDetails.getPrice());

@@ -15,31 +15,28 @@ public class Product {
     private double price;
     private String categoryId;  // Reference to Category
     private String vendorId;    // Reference to Vendor
+    private String vendorName;  // Name of the Vendor
     private int stockQuantity;
     private String imageUrl;
-
-    // Optional: list of review IDs associated with this product
     private List<String> reviewIds = new ArrayList<>(); // Initialize here
 
-    // Constructors, getters, and setters
+    // Constructors
+    public Product() {}
 
-
-
-    public Product() {
-    }
-
-    public Product(String id, String name, String description, double price, String categoryId, String vendorId, int stockQuantity, String imageUrl, List<String> reviewIds) {
+    public Product(String id, String name, String description, double price, String categoryId, String vendorId, String vendorName, int stockQuantity, String imageUrl, List<String> reviewIds) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.categoryId = categoryId;
         this.vendorId = vendorId;
+        this.vendorName = vendorName;
         this.stockQuantity = stockQuantity;
         this.imageUrl = imageUrl;
         this.reviewIds = reviewIds;
     }
 
+    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -86,6 +83,14 @@ public class Product {
 
     public void setVendorId(String vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
     public int getStockQuantity() {
