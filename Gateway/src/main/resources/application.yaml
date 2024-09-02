@@ -24,6 +24,10 @@ spring:
           predicates:
             - Path=/api/users/**
 
+jwt:
+  token:
+    secret: your-secure-secret-key-here
+
 eureka:
   client:
     service-url:

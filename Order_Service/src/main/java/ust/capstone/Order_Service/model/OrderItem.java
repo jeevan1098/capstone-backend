@@ -12,16 +12,18 @@ public class OrderItem {
     private String productName;
     private double price;
     private int quantity;
+    private String vendorId;  // Added vendorId
 
     // Constructors, Getters, and Setters
     public OrderItem() {}
 
-    public OrderItem(String orderId, String productId, String productName, double price, int quantity) {
+    public OrderItem(String orderId, String productId, String productName, double price, int quantity, String vendorId) {
         this.orderId = orderId;
         this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
+        this.vendorId = vendorId;  // Initialize vendorId
     }
 
     public String getId() {
@@ -70,5 +72,13 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(String vendorId) {
+        this.vendorId = vendorId;
     }
 }

@@ -11,15 +11,16 @@ public class Order {
     @Id
     private String id;
     private String userId;
-    private LocalDateTime orderDate;  // Ensure this is LocalDateTime
+    private LocalDateTime orderDate;
     private double totalAmount;
     private List<OrderItem> orderItems;
+    private List<String> vendorIds;  // List of vendor IDs associated with the order
 
     public Order() {
         this.orderDate = LocalDateTime.now();  // Set orderDate when the object is instantiated
     }
 
-    // getters and setters
+    // Getters and Setters
 
     public String getId() {
         return id;
@@ -59,5 +60,13 @@ public class Order {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public List<String> getVendorIds() {
+        return vendorIds;
+    }
+
+    public void setVendorIds(List<String> vendorIds) {
+        this.vendorIds = vendorIds;
     }
 }

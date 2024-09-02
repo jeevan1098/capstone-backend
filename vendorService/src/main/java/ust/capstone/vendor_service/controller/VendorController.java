@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.service.VendorService;
 import ust.capstone.vendor_service.exception.VendorNotFoundException;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/vendors")
@@ -39,6 +40,16 @@ public class VendorController {
         if (vendor.isPresent()) {
             return ResponseEntity.ok(vendor.get());
         } else {
+            return ResponseEntity.status(404).body("Vendor not found with id: " + id);
+        }
+    }
+
+    @GetMapping("/{id}/contact-mail")
+    public ResponseEntity<?> getVendorContactMailById(@PathVariable String id) {
+        try {
+            String contactMail = vendorService.getVendorContactMailById(id);
+            return ResponseEntity.ok(contactMail);
+        } catch (VendorNotFoundException ex) {
             return ResponseEntity.status(404).body("Vendor not found with id: " + id);
         }
     }
@@ -87,6 +98,7 @@ public class VendorController {
             return ResponseEntity.status(404).body("Vendor not found with contact mail: " + contactMail);
         }
     }
+
     @GetMapping("/{id}/products")
     public ResponseEntity<List<?>> getProductsByVendorId(@PathVariable String id) {
         List<?> products = vendorService.getProductsByVendorId(id);

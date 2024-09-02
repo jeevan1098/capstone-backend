@@ -1,6 +1,5 @@
 package ust.capstone.Order_Service.service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ust.capstone.Order_Service.model.OrderItem;
@@ -15,7 +14,6 @@ public class OrderItemService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
-
     public OrderItem createOrderItem(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
     }
@@ -28,9 +26,9 @@ public class OrderItemService {
         return orderItemRepository.findByOrderId(orderId);
     }
 
-//    public List<OrderItem> getOrderItemsByVendorId(String vendorId) {
-//        return orderItemRepository.findByProductVendorId(vendorId);
-//    }
+    public List<OrderItem> getOrderItemsByVendorId(String vendorId) {
+        return orderItemRepository.findByVendorId(vendorId);
+    }
 
     public OrderItem updateOrderItem(String id, OrderItem orderItem) {
         if (orderItemRepository.existsById(id)) {
@@ -54,4 +52,3 @@ public class OrderItemService {
         return orderItemRepository.findByProductId(productId);
     }
 }
-

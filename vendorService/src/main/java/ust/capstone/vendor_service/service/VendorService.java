@@ -3,7 +3,6 @@ package ust.capstone.vendor_service.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ust.capstone.vendor_service.feigen.ProductServiceClient;
 import ust.capstone.vendor_service.exception.VendorNotFoundException;
 import ust.capstone.vendor_service.feigen.ProductServiceClient;
 import ust.capstone.vendor_service.model.Vendor;
@@ -51,6 +50,17 @@ public class VendorService {
         return vendorRepository.findById(id);
     }
 
+    public Vendor getVendorByContactMail(String contactMail) {
+        return vendorRepository.findByContactMail(contactMail)
+                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
+    }
+
+    public String getVendorContactMailById(String id) {
+        Vendor vendor = getVendorById(id)
+                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with id: " + id));
+        return vendor.getContactMail();
+    }
+
     public Vendor login(String contactMail, String password) {
         Optional<Vendor> optionalVendor = vendorRepository.findByContactMail(contactMail);
         if (optionalVendor.isPresent()) {
@@ -77,11 +87,6 @@ public class VendorService {
         Vendor vendor = vendorRepository.findByContactMail(contactMail)
                 .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
         vendorRepository.delete(vendor);
-    }
-
-    public Vendor getVendorByContactMail(String contactMail) {
-        return vendorRepository.findByContactMail(contactMail)
-                .orElseThrow(() -> new VendorNotFoundException("Vendor not found with contact mail: " + contactMail));
     }
 
     public List<?> getProductsByVendorId(String vendorId) {

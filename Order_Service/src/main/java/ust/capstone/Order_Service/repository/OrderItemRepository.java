@@ -10,5 +10,7 @@ import java.util.List;
 public interface OrderItemRepository extends MongoRepository<OrderItem, String> {
     List<OrderItem> findByProductId(String productId);
     List<OrderItem> findByOrderId(String orderId);
+
+    List<OrderItem> findByVendorId(String vendorId);
 //    List<OrderItem> findByProductVendorId(String vendorId);
 }
