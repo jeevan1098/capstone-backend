@@ -20,6 +20,9 @@ public class OrderService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
+    @Autowired
+    private EmailSenderService emailSender;
+
     public Order createOrder(Order order) {
         // Ensure orderDate is set
         if (order.getOrderDate() == null) {
@@ -41,7 +44,22 @@ public class OrderService {
 
         // Update the total amount and save the order again
         order.setTotalAmount(totalAmount);
-        return orderRepository.save(order);
+        order = orderRepository.save(order);
+
+        // Send email notifications
+        sendEmailNotification(order);
+
+        return order;
+    }
+
+    private void sendEmailNotification(Order order) {
+        String userEmail = "jeevanbabugotru@gmail.com"; // Placeholder for actual user email from the order entity
+        String vendorEmail = "gjeevan410@gmail.com"; // Placeholder for actual vendor email from the order entity
+        String subject = "Order Confirmation";
+        String message = "Your order with ID " + order.getId() + " has been placed successfully.";
+
+        emailSender.sendEmail(userEmail, subject, message);
+        emailSender.sendEmail(vendorEmail, subject, message);
     }
 
     public Optional<Order> getOrderById(String id) {
