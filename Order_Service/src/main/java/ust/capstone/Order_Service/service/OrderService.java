@@ -2,6 +2,8 @@ package ust.capstone.Order_Service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ust.capstone.Order_Service.feign.ProductClient;
+import ust.capstone.Order_Service.feign.UserClient;
 import ust.capstone.Order_Service.model.Order;
 import ust.capstone.Order_Service.model.OrderItem;
 import ust.capstone.Order_Service.repository.OrderRepository;
@@ -9,6 +11,7 @@ import ust.capstone.Order_Service.repository.OrderItemRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -23,26 +26,46 @@ public class OrderService {
     @Autowired
     private EmailSenderService emailSender;
 
+    @Autowired
+    private UserClient userClient;
+
+    @Autowired
+    private ProductClient productClient;
+
     public Order createOrder(Order order) {
         // Ensure orderDate is set
         if (order.getOrderDate() == null) {
             order.setOrderDate(LocalDateTime.now());
         }
 
-        // Save the Order to generate the orderId
+        // Save the Order first to generate the orderId
         order = orderRepository.save(order);
 
         // Calculate total amount
         double totalAmount = 0.0;
 
-        // Set the orderId for each OrderItem and save them
+        // Fetch product details, check stock, and update order items
         for (OrderItem item : order.getOrderItems()) {
-            item.setOrderId(order.getId());  // Set the orderId
-            orderItemRepository.save(item);  // Save each item
-            totalAmount += item.getPrice() * item.getQuantity();  // Calculate total
+            Map<String, Object> product = productClient.getProductById(item.getProductId());
+            int stockQuantity = (int) product.get("stockQuantity");
+            double price = (double) product.get("price");
+            String productName = (String) product.get("name");
+
+            if (stockQuantity < item.getQuantity()) {
+                throw new IllegalStateException("Insufficient stock for product: " + productName);
+            }
+
+            item.setPrice(price);
+            item.setProductName(productName);
+            item.setOrderId(order.getId());  // Set the generated orderId in the OrderItem
+            orderItemRepository.save(item);
+            totalAmount += price * item.getQuantity();
+
+            // Update product stock
+            productClient.updateProductStock(item.getProductId(), stockQuantity - item.getQuantity());
         }
 
-        // Update the total amount and save the order again
+        // Update total amount and save the order again
         order.setTotalAmount(totalAmount);
         order = orderRepository.save(order);
 
@@ -52,9 +75,10 @@ public class OrderService {
         return order;
     }
 
+
     private void sendEmailNotification(Order order) {
-        String userEmail = "jeevanbabugotru@gmail.com"; // Placeholder for actual user email from the order entity
-        String vendorEmail = "gjeevan410@gmail.com"; // Placeholder for actual vendor email from the order entity
+        String userEmail = userClient.getUserEmailById(order.getUserId());  // Fetch user's email using Feign client
+        String vendorEmail = "gjeevan0527@gmail.com";  // Placeholder for actual vendor email
         String subject = "Order Confirmation";
         String message = "Your order with ID " + order.getId() + " has been placed successfully.";
 

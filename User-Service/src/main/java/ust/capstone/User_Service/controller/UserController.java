@@ -48,6 +48,13 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
         }
     }
+    @GetMapping("/{userId}/email")
+    public ResponseEntity<String> getUserEmailById(@PathVariable String userId) {
+        Optional<User> user = userService.getUserById(userId);
+        return user.map(value -> ResponseEntity.ok(value.getEmail()))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
+    }
+
 
     @PutMapping("/{email}")
     public ResponseEntity<?> updateUser(@PathVariable String email, @RequestBody User userDetails) {
