@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ust.capstone.vendor_service.feigen.OrderItemClient;
 import ust.capstone.vendor_service.model.Vendor;
 import ust.capstone.vendor_service.service.VendorService;
 import ust.capstone.vendor_service.exception.VendorNotFoundException;
@@ -17,6 +18,14 @@ public class VendorController {
 
     @Autowired
     private VendorService vendorService;
+
+    @Autowired
+    private OrderItemClient orderItemClient;
+
+    @GetMapping("/{vendorId}/orders")
+    public List<?> getOrdersByVendorId(@PathVariable String vendorId) {
+        return orderItemClient.getOrderItemsByVendorId(vendorId);
+    }
 
     @PostMapping("/register")
     public ResponseEntity<Vendor> registerVendor(@RequestBody Vendor vendor) {
@@ -104,4 +113,5 @@ public class VendorController {
         List<?> products = vendorService.getProductsByVendorId(id);
         return ResponseEntity.ok(products);
     }
+
 }

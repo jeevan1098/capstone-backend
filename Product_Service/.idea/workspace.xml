@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba7a6d0b-65cc-41b6-ae17-962dfbcfef03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/feign/VendorClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendorService/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/feigen/OrderItemClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/controller/OrderItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/controller/OrderItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ust/capstone/Product_Service/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/META-INF/maven/com.project/vendorService/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/controller/VendorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/controller/VendorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/controller/VendorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/target/classes/ust/capstone/vendor_service/controller/VendorController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +29,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -48,17 +40,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ProductServiceApplication.executor": "Run",
-    "Maven.Product_Service [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/284744/Documents/Capstone/capstone-backend/vendorService"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ProductServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Product_Service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/284744/Documents/Capstone/capstone-backend/vendorService&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ProductServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ust.capstone.Product_Service.ProductServiceApplication" />
@@ -78,6 +70,13 @@
         <item itemvalue="Application.ProductServiceApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

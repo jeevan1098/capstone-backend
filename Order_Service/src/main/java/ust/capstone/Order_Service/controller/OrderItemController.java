@@ -44,6 +44,10 @@ public class OrderItemController {
         List<OrderItem> orderItems = orderItemService.getOrderItemsByProductId(productId);
         return ResponseEntity.ok(orderItems);
     }
+    @GetMapping("/vendor/{vendorId}")
+    public List<OrderItem> getOrderItemsByVendorId(@PathVariable String vendorId) {
+        return orderItemService.getOrderItemsByVendorId(vendorId);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrderItem(@PathVariable String id, @RequestBody OrderItem orderItem) {
