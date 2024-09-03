@@ -4,25 +4,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ust.capstone.User_Service.Response.AuthResponse;
+import ust.capstone.User_Service.Response.LoginResponse;
 import ust.capstone.User_Service.exception.UserNotFoundException;
 import ust.capstone.User_Service.model.User;
+import ust.capstone.User_Service.service.JwtService;
 import ust.capstone.User_Service.service.UserService;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtService jwtService;  // Updated to use JwtService
 
     @GetMapping("/{userId}/orders")
     public ResponseEntity<List<Map<String, Object>>> getOrdersByUserId(@PathVariable String userId) {
         List<Map<String, Object>> orders = userService.getOrdersByUserId(userId);
         return ResponseEntity.ok(orders);
     }
+
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User registeredUser = userService.registerUser(user);
@@ -43,18 +52,21 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
             User loggedInUser = userService.loginUser(user.getEmail(), user.getPassword());
-            return ResponseEntity.ok(loggedInUser);
+            String token = jwtService.generateToken(loggedInUser.getUsername());
+
+            // Return both the user details and the token
+            return ResponseEntity.ok(new LoginResponse(token, loggedInUser));
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
         }
     }
+
     @GetMapping("/{userId}/email")
     public ResponseEntity<String> getUserEmailById(@PathVariable String userId) {
         Optional<User> user = userService.getUserById(userId);
         return user.map(value -> ResponseEntity.ok(value.getEmail()))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found"));
     }
-
 
     @PutMapping("/{email}")
     public ResponseEntity<?> updateUser(@PathVariable String email, @RequestBody User userDetails) {

@@ -26,7 +26,7 @@ spring:
 
 jwt:
   token:
-    secret: your-secure-secret-key-here
+    secret: 4pP7cZ9XVlgWZ2aVUbKN1ZnTgLs5pZIsLmbbAqJrFiA=
 
 eureka:
   client:
