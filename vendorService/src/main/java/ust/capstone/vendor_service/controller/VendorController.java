@@ -1,6 +1,8 @@
 package ust.capstone.vendor_service.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class VendorController {
     @PostMapping("/register")
     public ResponseEntity<Vendor> registerVendor(@RequestBody Vendor vendor) {
         Vendor registeredVendor = vendorService.registerVendor(vendor);
-        return ResponseEntity.ok(registeredVendor);
+        return ResponseEntity.ok(registeredVendor); // No JWT token is generated here
     }
 
     @PutMapping("/{id}")
@@ -82,9 +84,12 @@ public class VendorController {
     public ResponseEntity<?> login(@RequestBody Vendor vendor) {
         try {
             Vendor loggedInVendor = vendorService.login(vendor.getContactMail(), vendor.getPassword());
-            return ResponseEntity.ok(loggedInVendor); // Return the vendor with the token
-        } catch (Exception e) {
-            return ResponseEntity.status(401).body("Unauthorized: " + e.getMessage());
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", loggedInVendor.getJwtToken());
+            response.put("vendor", loggedInVendor);  // Return vendor object with token
+            return ResponseEntity.ok(response);
+        } catch (VendorNotFoundException e) {
+            return ResponseEntity.status(401).body("Unauthorized: Invalid email or password");
         }
     }
 

@@ -71,8 +71,8 @@ public class VendorService {
             if (passwordEncoder.matches(password, vendor.getPassword())) {
                 // Generate JWT token
                 String token = jwtService.generateToken(vendor.getContactMail());
-                vendor.setJwtToken(token); // Set the generated token
-                return vendor;
+                vendor.setJwtToken(token); // Set the generated token in vendor object
+                return vendor; // Return vendor object with JWT token
             }
         }
         throw new VendorNotFoundException("Invalid email or password");

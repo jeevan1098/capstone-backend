@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/vendors/**","/api/users/login").permitAll() // Allow all requests to /api/vendors
+                .antMatchers("/api/vendors/**","/api/vendors/login").permitAll() // Allow all requests to /api/vendors
                 .anyRequest().authenticated() // Secure other endpoints
                 .and()
                 .httpBasic(); // Basic Authentication
