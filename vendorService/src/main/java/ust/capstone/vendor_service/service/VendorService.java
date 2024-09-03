@@ -21,6 +21,9 @@ public class VendorService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private JwtService jwtService;
+
+    @Autowired
     private ProductServiceClient productServiceClient;
 
     public Vendor registerVendor(Vendor vendor) {
@@ -66,10 +69,13 @@ public class VendorService {
         if (optionalVendor.isPresent()) {
             Vendor vendor = optionalVendor.get();
             if (passwordEncoder.matches(password, vendor.getPassword())) {
+                // Generate JWT token
+                String token = jwtService.generateToken(vendor.getContactMail());
+                vendor.setJwtToken(token); // Set the generated token
                 return vendor;
             }
         }
-        return null;
+        throw new VendorNotFoundException("Invalid email or password");
     }
 
     public List<Vendor> getAllVendors() {

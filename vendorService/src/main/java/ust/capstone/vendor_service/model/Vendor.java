@@ -15,6 +15,7 @@ public class Vendor {
     private String city;
     private String password;
     private String gstno;
+    private String jwtToken; // Field to store the JWT token
 
     public Vendor() {
     }
@@ -31,6 +32,7 @@ public class Vendor {
         this.gstno = gstno;
     }
 
+    // Getters and Setters
     public String getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class Vendor {
 
     public void setGstno(String gstno) {
         this.gstno = gstno;
+    }
+
+    public String getJwtToken() {
+        return jwtToken;
+    }
+
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 }

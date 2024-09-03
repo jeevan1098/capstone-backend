@@ -80,11 +80,11 @@ public class VendorController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Vendor vendor) {
-        Vendor loggedInVendor = vendorService.login(vendor.getContactMail(), vendor.getPassword());
-        if (loggedInVendor != null) {
-            return ResponseEntity.ok(loggedInVendor);
-        } else {
-            return ResponseEntity.status(401).body("Unauthorized: Incorrect contact mail or password");
+        try {
+            Vendor loggedInVendor = vendorService.login(vendor.getContactMail(), vendor.getPassword());
+            return ResponseEntity.ok(loggedInVendor); // Return the vendor with the token
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body("Unauthorized: " + e.getMessage());
         }
     }
 
