@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba7a6d0b-65cc-41b6-ae17-962dfbcfef03" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/util/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Order_Service/src/main/java/ust/capstone/Order_Service/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../User-Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../User-Service/src/main/java/ust/capstone/User_Service/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../vendorService/src/main/java/ust/capstone/vendor_service/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,13 +66,6 @@
         <item itemvalue="Application.ProductServiceApplication" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

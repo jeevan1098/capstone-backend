@@ -54,18 +54,24 @@ public class OrderService {
             String productName = (String) product.get("name");
             String vendorId = (String) product.get("vendorId");
 
+            // Ensure there is enough stock
             if (stockQuantity < item.getQuantity()) {
                 throw new IllegalStateException("Insufficient stock for product: " + productName);
             }
 
+            // Set the correct details for the order item
             item.setPrice(price);
             item.setProductName(productName);
             item.setOrderId(order.getId());
             item.setVendorId(vendorId);
             orderItemRepository.save(item);
+
+            // Calculate total amount
             totalAmount += price * item.getQuantity();
 
-            productClient.updateProductStock(item.getProductId(), stockQuantity - item.getQuantity());
+            // Correctly update the stock by passing the ordered quantity
+            productClient.updateProductStock(item.getProductId(), item.getQuantity());
+
             vendorIds.add(vendorId);
         }
 
